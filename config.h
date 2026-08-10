@@ -21,5 +21,6 @@
     X("CPU: ", "{ awk '/^cpu / {t=0; for(i=2;i<=NF;i++) t+=$i; print t,$5+$6; exit}' /proc/stat; sleep 1; awk '/^cpu / {t=0; for(i=2;i<=NF;i++) t+=$i; print t,$5+$6; exit}' /proc/stat; } | awk 'NR==1 {t=$1; i=$2; next} {printf \"%.2f%%\", 100*(1-($2-i)/($1-t))}'", 1, 9) \
     X("RAM: ", "free --mebi | awk '/^Mem:/ {printf \"%.2fGiB\", $3/1024}'", 1, 11) \
     X("", "date '+%d/%m/%y %H:%M:%S'", 1, 10)
+// X("", "cat /sys/class/power_supply/BAT1/capacity | xargs -I {} echo {}%", 5, 9)
 
 #endif  // CONFIG_H
